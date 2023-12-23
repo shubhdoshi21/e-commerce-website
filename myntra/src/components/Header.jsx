@@ -4,7 +4,10 @@ import { FaHeartCirclePlus } from "react-icons/fa6";
 import { IoBagCheck } from "react-icons/io5";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const bag = useSelector((store) => store.bag);
+
   return (
     <header>
       <div className="logo_container">
@@ -45,8 +48,8 @@ const Header = () => {
         <Link className="action_container" to="/bag">
           <IoBagCheck />
           <span className="action_name">Bag</span>
-          <span className="bag-item-count">0</span>
-        </Link>
+          <span className="bag-item-count">{bag.length}</span>
+        </Link> 
       </div>
     </header>
   );

@@ -1,6 +1,12 @@
 import React from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-const BagItem = ({item}) => {
+import { useDispatch } from "react-redux";
+import { bagActions } from "../store/bagSlice";
+const BagItem = ({ item }) => {
+  const dispatch = useDispatch();
+  const handleRemoveFromBag = () => {
+    dispatch(bagActions.removeFromBag(item.id));
+  };
   return (
     <div className="bag-item-container">
       <div className="item-left-part">
@@ -25,12 +31,7 @@ const BagItem = ({item}) => {
           <span className="delivery-details-days">{item.delivery_date}</span>
         </div>
       </div>
-      <div
-        className="remove-from-cart"
-        onClick={() => {
-          console.log("remove from bag called");
-        }}
-      >
+      <div className="remove-from-cart" onClick={handleRemoveFromBag}>
         <IoIosCloseCircleOutline />
       </div>
     </div>

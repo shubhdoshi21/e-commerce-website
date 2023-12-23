@@ -1,10 +1,22 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const BagSummary = () => {
-  const totalItem = 0;
-  const totalMRP = 0;
-  const totalDiscount = 0;
-  const finalPayment = 0;
+  const bag = useSelector((store) => store.bag);
+  const items = useSelector((store) => store.items);
+  const bagItems = items.filter((item) => {
+    const itemIndex = bag.indexOf(item.id);
+    return itemIndex >= 0;
+  });
+  const totalItem = bag.length;
+  const CONVENIENCE_FEES = 99;
+  let totalMRP = 0; 
+  let totalDiscount = 0;
+  bagItems.forEach((bagItem) => {
+    totalMRP += bagItem.original_price;
+    totalDiscount += bagItem.original_price - bagItem.current_price;
+  });
+  let finalPayment = totalMRP - totalDiscount + CONVENIENCE_FEES;
 
   return (
     <div className="bag-summary">
@@ -22,7 +34,7 @@ const BagSummary = () => {
         </div>
         <div className="price-item">
           <span className="price-item-tag">Convenience Fee</span>
-          <span className="price-item-value">₹99</span>
+          <span className="price-item-value">₹{CONVENIENCE_FEES}</span>
         </div>
         <hr />
         <div className="price-footer">

@@ -1,28 +1,22 @@
 import React from "react";
 import BagSummary from "../components/BagSummary";
 import BagItem from "../components/BagItem";
+import { useDispatch, useSelector } from "react-redux";
 
 const Bag = () => {
-  const obj = {
-    id: "008",
-    image: "images/8.jpg",
-    company: "Nivea",
-    item_name: "Men Fresh Deodrant 150ml",
-    original_price: 285,
-    current_price: 142,
-    discount_percentage: 50,
-    return_period: 14,
-    delivery_date: "10 Oct 2023",
-    rating: {
-      stars: 4.2,
-      count: 5200,
-    },
-  };
+  const bag = useSelector((store) => store.bag);
+  const items = useSelector((store) => store.items);
+  const bagItems = items.filter((item) => {
+    const itemIndex = bag.indexOf(item.id);
+    return itemIndex >= 0;
+  });
   return (
     <main>
       <div className="bag-page">
         <div className="bag-items-container">
-          <BagItem item={obj} />
+          {bagItems.map((item) => (
+            <BagItem item={item} key={item.id} />
+          ))}
         </div>
         <BagSummary />
       </div>
