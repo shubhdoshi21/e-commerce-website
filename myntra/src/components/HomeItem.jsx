@@ -13,24 +13,35 @@ const HomeItem = ({ item }) => {
   };
   return (
     <>
-      <div className="item-container">
-        <img className="item-image" src={item.image} alt="item image" />
-        <div className="rating">
+      <div className="w-64 p-2 m-2">
+        <img className="w-full rounded-md" src={item.image} alt="item image" />
+        <div className="text-xs py-2">
           {item.rating.stars} ⭐ | {item.rating.count}
         </div>
-        <div className="company-name">{item.company}</div>
-        <div className="item-name">{item.item_name}</div>
-        <div className="price">
-          <span className="current-price">Rs {item.current_price}</span>
-          <span className="original-price">Rs {item.original_price}</span>
-          <span className="discount">({item.discount_percentage}% OFF)</span>
+        <div className="font-bold overflow-hidden text-nowrap text-ellipsis text-[#282c3f]">
+          {item.company}
+        </div>
+        <div className="text-[#535766] text-xs overflow-hidden text-nowrap text-ellipsis">
+          {item.item_name}
+        </div>
+        <div className="py-2">
+          <span className="font-bold text-sm">Rs {item.current_price}</span>
+          <span className="text-xs line-through text-[#7e818c] px-1">
+            Rs {item.original_price}
+          </span>
+          <span className="text-[#ff905a] text-sm">
+            ({item.discount_percentage}% OFF)
+          </span>
         </div>
         {bag.includes(item.id) ? (
-          <button className="btn-add-bag" onClick={handleRemoveFromBag}>
+          <button
+            className="w-full rounded-3xl bg-red-500 p-2 text-white hover:bg-red-700"
+            onClick={handleRemoveFromBag}
+          >
             Remove
           </button>
         ) : (
-          <button className="btn-add-bag" onClick={handleAddToBag}>
+          <button className="w-full rounded-3xl bg-green-500 p-2 text-white hover:bg-green-700" onClick={handleAddToBag}>
             Add to Bag
           </button>
         )}

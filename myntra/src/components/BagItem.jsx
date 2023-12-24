@@ -8,31 +8,36 @@ const BagItem = ({ item }) => {
     dispatch(bagActions.removeFromBag(item.id));
   };
   return (
-    <div className="bag-item-container">
-      <div className="item-left-part">
-        <img className="bag-item-img" src={`../${item.image}`} />
+    <div className="my-1 text-sm border rounded-md relative p-2">
+      <div className="absolute w-[120px] h-[150px]">
+        <img className="" src={`../${item.image}`} />
       </div>
-      <div className="item-right-part">
-        <div className="company">{item.company}</div>
-        <div className="item-name">{item.item_name}</div>
-        <div className="price-container">
-          <span className="current-price">Rs {item.current_price}</span>
-          <span className="original-price">Rs {item.original_price}</span>
-          <span className="discount-percentage">
-            ({item.discount_percentage}% OFF)
+      <div className="p-2 ml-[120px] relative min-h-[162px]">
+        <div className="font-bold">{item.company}</div>
+        <div className="overflow-hidden text-slate-600">{item.item_name}</div>
+        <div className="">
+          <span className="font-semibold text-sm text-[#282c3f]">
+            Rs {item.current_price}
           </span>
+          <span className="line-through mx-1 text-xs text-[#7e818c]">
+            Rs {item.original_price}
+          </span>
+          <span className="">({item.discount_percentage}% OFF)</span>
         </div>
-        <div className="return-period">
-          <span className="return-period-days">{item.return_period} days</span>
+        <div className="inline-flex text-xs py-1">
+          <span className="font-bold pr-1">{item.return_period} days</span>
           return available
         </div>
-        <div className="delivery-details">
+        <div className="text-xs py-1">
           Delivery by
-          <span className="delivery-details-days">{item.delivery_date}</span>
+          <span className="pl-1 text-green-500">{item.delivery_date}</span>
         </div>
       </div>
-      <div className="remove-from-cart" onClick={handleRemoveFromBag}>
-        <IoIosCloseCircleOutline />
+      <div
+        className="absolute cursor-pointer top-2 right-3"
+        onClick={handleRemoveFromBag}
+      >
+        <IoIosCloseCircleOutline className="w-6 h-6" />
       </div>
     </div>
   );

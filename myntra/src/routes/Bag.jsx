@@ -1,7 +1,7 @@
 import React from "react";
 import BagSummary from "../components/BagSummary";
 import BagItem from "../components/BagItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Bag = () => {
   const bag = useSelector((store) => store.bag);
@@ -11,9 +11,9 @@ const Bag = () => {
     return itemIndex >= 0;
   });
   return (
-    <main>
-      <div className="bag-page">
-        <div className="bag-items-container">
+    <main className="m-10">
+      <div className="w-full">
+        <div className={`inline-block w-2/3 p-5 ${bagItems.length ? "border rounded-md": ""}`}>
           {bagItems.map((item) => (
             <BagItem item={item} key={item.id} />
           ))}

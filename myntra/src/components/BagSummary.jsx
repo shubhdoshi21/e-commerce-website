@@ -10,7 +10,7 @@ const BagSummary = () => {
   });
   const totalItem = bag.length;
   const CONVENIENCE_FEES = 99;
-  let totalMRP = 0; 
+  let totalMRP = 0;
   let totalDiscount = 0;
   bagItems.forEach((bagItem) => {
     totalMRP += bagItem.original_price;
@@ -19,31 +19,33 @@ const BagSummary = () => {
   let finalPayment = totalMRP - totalDiscount + CONVENIENCE_FEES;
 
   return (
-    <div className="bag-summary">
-      <div className="bag-details-container">
-        <div className="price-header">PRICE DETAILS ({totalItem} Items)</div>
-        <div className="price-item">
-          <span className="price-item-tag">Total MRP</span>
-          <span className="price-item-value">₹{totalMRP}</span>
+    <div className="w-1/3 inline-block align-top px-5">
+      <div className="">
+        <div className="text-xs font-bold text-slate-600 my-3">
+          PRICE DETAILS ({totalItem} Items)
         </div>
-        <div className="price-item">
-          <span className="price-item-tag">Discount on MRP</span>
-          <span className="price-item-value priceDetail-base-discount">
+        <div className="text-sm">
+          <span className="">Total MRP</span>
+          <span className="float-right">₹{totalMRP}</span>
+        </div>
+        <div className="text-sm my-2">
+          <span className="">Discount on MRP</span>
+          <span className="float-right priceDetail-base-discount">
             -₹{totalDiscount}
           </span>
         </div>
-        <div className="price-item">
-          <span className="price-item-tag">Convenience Fee</span>
-          <span className="price-item-value">₹{CONVENIENCE_FEES}</span>
+        <div className="text-sm mb-2">
+          <span className="">Convenience Fee</span>
+          <span className="float-right">₹{CONVENIENCE_FEES}</span>
         </div>
         <hr />
-        <div className="price-footer">
-          <span className="price-item-tag">Total Amount</span>
-          <span className="price-item-value">₹{finalPayment}</span>
+        <div className="font-bold py-3">
+          <span className="">Total Amount</span>
+          <span className="float-right">₹{finalPayment}</span>
         </div>
       </div>
-      <button className="btn-place-order">
-        <div className="css-xjhrni">PLACE ORDER</div>
+      <button className="w-full rounded-md p-4 bg-[#ff3f6c] hover:bg-[#e42d2d] text-white">
+        <div className="">PLACE ORDER</div>
       </button>
     </div>
   );
